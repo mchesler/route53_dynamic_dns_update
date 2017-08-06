@@ -93,7 +93,11 @@ class UpdateDNS
   end
 
   def go!
-    update_ip unless observed_ip == route53_ip
+    if observed_ip == route53_ip
+      puts "[#{Time.now}] Nothing to update, #{observed_ip} is current"
+    else
+      update_ip
+    end
   end
 end
 
